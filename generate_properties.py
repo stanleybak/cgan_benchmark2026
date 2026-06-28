@@ -18,8 +18,8 @@ def create_input_bounds(c: np.ndarray, z: np.ndarray, eps: float, changable_late
     """
 
     bounds = np.zeros((5, 2), dtype=np.float32)
-    bounds[0, 0] = np.clip((c - eps), -1, 1)
-    bounds[0, 1] = np.clip((c + eps), -1, 1)
+    bounds[0, 0] = np.clip((c - eps), -1, 1).item()
+    bounds[0, 1] = np.clip((c + eps), -1, 1).item()
     for i in range(4):
         if i in changable_latents_idx:
             bounds[i+1, 0] = np.clip((z[i] - eps), -1, 1)
@@ -42,8 +42,8 @@ def create_output_bounds(c: np.ndarray, eps: float) -> np.ndarray:
     """
 
     bounds = np.zeros((1, 2), dtype=np.float32)
-    bounds[0, 0] = np.clip((c - eps), -1, 1)
-    bounds[0, 1] = np.clip((c + eps), -1, 1)
+    bounds[0, 0] = np.clip((c - eps), -1, 1).item()
+    bounds[0, 1] = np.clip((c + eps), -1, 1).item()
     
     bounds = bounds.reshape(1, 2)
     return bounds
